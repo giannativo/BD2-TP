@@ -44,8 +44,6 @@ public class Mongo {
 		}
 	}
 	
-	// 
-	
 	// Convertir e imprimir document como json
 	public Block<Document> printBlock = new Block<Document>() {
 	       @Override
