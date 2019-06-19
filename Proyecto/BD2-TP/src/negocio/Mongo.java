@@ -31,18 +31,20 @@ public class Mongo {
 		this.mongoClient = mongoClient;
 	}
 	
-	// Desde el Singleton de conexion mongoClient traer todos los documentos de la coleccion "startup_log" de la base "local" e imprimirlos
+	// Desde el Singleton de conexion mongoClient traer todos los documentos de la coleccion de la base e imprimirlos
 	@SuppressWarnings("deprecation")
-	public void mostrar() {
+	public void mostrar(String base, String colleccion) {
 		try {
-			MongoDatabase database = this.getMongoClient().getDatabase("local");
-			MongoCollection<Document> coll = database.getCollection("startup_log");
+			MongoDatabase database = this.getMongoClient().getDatabase(base);
+			MongoCollection<Document> coll = database.getCollection(colleccion);
 			coll.find().forEach(printBlock);
 			this.getMongoClient().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	// 
 	
 	// Convertir e imprimir document como json
 	public Block<Document> printBlock = new Block<Document>() {
@@ -51,4 +53,5 @@ public class Mongo {
 	           System.out.println(document.toJson());
 	       }
 	};
+
 }
