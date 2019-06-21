@@ -31,14 +31,12 @@ public class Mongo {
 		this.mongoClient = mongoClient;
 	}
 	
-	// Desde el Singleton de conexion mongoClient traer todos los documentos de la coleccion de la base e imprimirlos
 	@SuppressWarnings("deprecation")
 	public void mostrar(String base, String colleccion) {
 		try {
 			MongoDatabase database = this.getMongoClient().getDatabase(base);
 			MongoCollection<Document> coll = database.getCollection(colleccion);
 			coll.find().forEach(printBlock);
-			this.getMongoClient().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
