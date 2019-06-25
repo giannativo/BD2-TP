@@ -18,8 +18,14 @@ public class TestCargaDeDatos {
 		//Provincia//
 		agregarProvincia(new Provincia(1,"Buenos Aires"));
 		
+		//Domicilio//
+		agregarDomicilio(new Domicilio(1,"cordero","540",new Localidad(2,"Adrogue"),new Provincia(1,"Buenos Aires")))
+		
 		//Productos//
 		 //Perfumeria//
+		 agregarProducto(new Producto(1,"perfumeria","desodorante",null,111,258));
+		 agregarProducto(new Producto(2,"perfumeria","jabón",null,112,150));
+		 agregarProducto(new Producto(3,"perfumeria","shampoo",null,113,200));
 		 
 		 //Medicamento//
 		 agregarProducto(new Producto(1,"medicamento","Omeprazol","Klonal",111,258));
@@ -46,6 +52,10 @@ public class TestCargaDeDatos {
 	}
 	
 	public static void agregarProducto(Producto producto) {
+		
+	}
+	
+    public static void agregarDomicilio(Domicilio domicilio) {
 		
 	}
 
