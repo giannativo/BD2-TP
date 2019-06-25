@@ -41,7 +41,7 @@ public class Mongo {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// Convertir e imprimir document como json
 	public Block<Document> printBlock = new Block<Document>() {
 	       @Override
