@@ -31,11 +31,11 @@ public class TestPojos {
 		);
 		
 		@SuppressWarnings("deprecation")
-		Date fecha1 = new Date(2019,5,24,12,0);
+		Date fecha1 = new Date(119,5,24,12,0);
 		@SuppressWarnings("deprecation")
-		Date fecha2 = new Date(2019,5,25,8,0);
+		Date fecha2 = new Date(119,5,25,8,0);
 		@SuppressWarnings("deprecation")
-		Date fecha3 = new Date(2019,5,25,16,0);		
+		Date fecha3 = new Date(119,5,25,16,0);		
 		
 		Producto prod1 = new Producto(1,"medicamento","Omeprazol","Klonal",111,258);
 		Producto prod2 = new Producto(2,"medicamento","Clonazepam","Klonal",112,150);
@@ -57,8 +57,9 @@ public class TestPojos {
 		
 		Mongo mongo = Mongo.getInstanciaMongo();
 		
-		mongo.agregarVentas("venta", ventas);
-		mongo.mostrar("venta");
+//		mongo.agregarVentas("venta", ventas);
+//		mongo.mostrarFechasVentas();
+		mongo.fechasEntre(fecha1, fecha2);
 		
 		mongo.getMongoClient().close();		
 	}

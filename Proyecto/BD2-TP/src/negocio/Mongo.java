@@ -57,6 +57,30 @@ public class Mongo {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
+	public void mostrarFechasVentas() {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			coll.find().forEach(getDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void fechasEntre(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			coll.find(
+					and(gte("fecha",fecha1), lte("fecha",fecha2))
+				).forEach(getDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void agregarLocalidad(String colleccion, Localidad localidad) {
 		try{
 			MongoDatabase database = this.getMongoClient().getDatabase(this.base);
@@ -102,6 +126,13 @@ public class Mongo {
 	       @Override
 	       public void apply(final Document document) {
 	           System.out.println(document.toJson());
+	       }
+	};
+	
+	public Block<Document> getDate = new Block<Document>() {
+	       @Override
+	       public void apply(final Document document) {
+	           System.out.println(document.get("fecha"));
 	       }
 	};
 
