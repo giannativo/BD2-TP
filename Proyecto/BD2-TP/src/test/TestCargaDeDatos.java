@@ -19,7 +19,7 @@ public class TestCargaDeDatos {
 		agregarProvincia(new Provincia(1,"Buenos Aires"));
 		
 		//Domicilio//
-		agregarDomicilio(new Domicilio(1,"cordero","540",new Localidad(2,"Adrogue"),new Provincia(1,"Buenos Aires")))
+		agregarDomicilio(new Domicilio(1,"cordero","540",new Localidad(2,"Adrogue"),new Provincia(1,"Buenos Aires")));
 		
 		//Productos//
 		 //Perfumeria//
