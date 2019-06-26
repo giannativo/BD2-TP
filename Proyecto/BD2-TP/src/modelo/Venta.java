@@ -1,13 +1,13 @@
 package modelo;
 
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import modelo.ItemVenta;
 import modelo.Empleado;
 
 public class Venta {
 	private int idVenta;
-	private GregorianCalendar fecha;
+	private Date fecha;
 	private int nroTicket;
 	private float total;
 	private int tipoPago;
@@ -16,7 +16,7 @@ public class Venta {
 	private Empleado empleado_caja;
 	private Empleado empleado_venta;
 	
-	public Venta(int idVenta, GregorianCalendar fecha, int nroTicket, float total, int tipoPago, int cantProductos,
+	public Venta(int idVenta, Date fecha, int nroTicket, float total, int tipoPago, int cantProductos,
 			List<ItemVenta> lstItems, Empleado empleado_caja, Empleado empleado_venta) {
 		super();
 		this.idVenta = idVenta;
@@ -38,11 +38,11 @@ public class Venta {
 		this.idVenta = idVenta;
 	}
 
-	public GregorianCalendar getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(GregorianCalendar fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
