@@ -93,4 +93,13 @@ public class Mongo {
 	       }
 	};
 
+	public <E> void agregarDocumentos(String colleccion, List<E> documentos) {
+		try{
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);
+			MongoCollection<E> collection = database.getCollection(colleccion, E.class);
+			collection.insertMany(documentos);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
