@@ -8,12 +8,14 @@ public class Sucursal {
 	private int idSucursal;
 	private Domicilio domicilio;
 	private List<Empleado> lstEmpleados;
+	private Empleado encargado;
 	
-	public Sucursal(int idSucursal, Domicilio domicilio, List<Empleado> lstEmpleados) {
+	public Sucursal(int idSucursal, Domicilio domicilio, List<Empleado> lstEmpleados, Empleado encargado) {
 		super();
 		this.idSucursal = idSucursal;
 		this.domicilio = domicilio;
 		this.lstEmpleados = lstEmpleados;
+		this.encargado = encargado;
 	}
 
 	public int getIdSucursal() {
@@ -39,6 +41,15 @@ public class Sucursal {
 	public void setLstEmpleados(List<Empleado> lstEmpleados) {
 		this.lstEmpleados = lstEmpleados;
 	}
+
+	public Empleado getEncargado() {
+		return encargado;
+	}
+
+	public void setEncargado(Empleado encargado) {
+		this.encargado = encargado;
+	}
+	
 	
 	
 }

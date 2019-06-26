@@ -12,8 +12,8 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 import static com.mongodb.client.model.Filters.*;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-import java.util.Date;
 
+import java.util.Date;
 import java.util.List;
 
 import modelo.*;

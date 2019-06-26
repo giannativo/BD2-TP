@@ -1,6 +1,7 @@
 package modelo;
 
 import modelo.Domicilio;
+import modelo.ObraSocial;
 
 public class Cliente {
 	private int idPersona;
@@ -8,11 +9,9 @@ public class Cliente {
 	private String nombre;
 	private int dni;
 	private Domicilio domicilio;
-	private String obraSocial;
-	private String nroAfiliado;
+	private ObraSocial obraSocial;
 	
-	public Cliente(int idPersona, String apellido, String nombre, int dni, Domicilio domicilio, String obraSocial,
-			String nroAfiliado) {
+	public Cliente(int idPersona, String apellido, String nombre, int dni, Domicilio domicilio, ObraSocial obraSocial) {
 		super();
 		this.idPersona = idPersona;
 		this.apellido = apellido;
@@ -20,7 +19,6 @@ public class Cliente {
 		this.dni = dni;
 		this.domicilio = domicilio;
 		this.obraSocial = obraSocial;
-		this.nroAfiliado = nroAfiliado;
 	}
 
 	public int getIdPersona() {
@@ -63,21 +61,12 @@ public class Cliente {
 		this.domicilio = domicilio;
 	}
 
-	public String getObraSocial() {
+	public ObraSocial getObraSocial() {
 		return obraSocial;
 	}
 
-	public void setObraSocial(String obraSocial) {
+	public void setObraSocial(ObraSocial obraSocial) {
 		this.obraSocial = obraSocial;
-	}
-
-	public String getNroAfiliado() {
-		return nroAfiliado;
-	}
-
-	public void setNroAfiliado(String nroAfiliado) {
-		this.nroAfiliado = nroAfiliado;
-	}
-	
+	}	
 	
 }

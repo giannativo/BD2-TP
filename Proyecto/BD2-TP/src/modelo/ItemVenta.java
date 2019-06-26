@@ -6,12 +6,14 @@ public class ItemVenta {
 	private int idItemVenta;
 	private Producto producto;
 	private int cantidad;
+	private float precio;
 	
-	public ItemVenta(int idItemVenta, Producto producto, int cantidad) {
+	public ItemVenta(int idItemVenta, Producto producto, int cantidad, float precio) {
 		super();
 		this.idItemVenta = idItemVenta;
 		this.producto = producto;
 		this.cantidad = cantidad;
+		this.precio = precio;
 	}
 
 	public int getIdItemVenta() {
@@ -37,6 +39,13 @@ public class ItemVenta {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
 	
 }

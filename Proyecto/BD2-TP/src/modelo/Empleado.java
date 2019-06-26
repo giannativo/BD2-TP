@@ -1,19 +1,19 @@
 package modelo;
 
 import modelo.Domicilio;
+import modelo.ObraSocial;
 
 public class Empleado {
 	private int idEmpleado;
-	private int cuil;
+	private long cuil;
 	private String apellido;
 	private String nombre;
 	private int dni;
 	private Domicilio domicilio;
-	private String obraSocial;
-	private String nroAfiliado;
+	private ObraSocial obraSocial;
 	
-	public Empleado(int idEmpleado, int cuil, String apellido, String nombre, int dni, Domicilio domicilio,
-			String obraSocial, String nroAfiliado) {
+	public Empleado(int idEmpleado, long cuil, String apellido, String nombre, int dni, Domicilio domicilio,
+			ObraSocial obraSocial) {
 		super();
 		this.idEmpleado = idEmpleado;
 		this.cuil = cuil;
@@ -22,7 +22,6 @@ public class Empleado {
 		this.dni = dni;
 		this.domicilio = domicilio;
 		this.obraSocial = obraSocial;
-		this.nroAfiliado = nroAfiliado;
 	}
 
 	public int getIdEmpleado() {
@@ -33,11 +32,11 @@ public class Empleado {
 		this.idEmpleado = idEmpleado;
 	}
 
-	public int getCuil() {
+	public long getCuil() {
 		return cuil;
 	}
 
-	public void setCuil(int cuil) {
+	public void setCuil(long cuil) {
 		this.cuil = cuil;
 	}
 
@@ -73,21 +72,12 @@ public class Empleado {
 		this.domicilio = domicilio;
 	}
 
-	public String getObraSocial() {
+	public ObraSocial getObraSocial() {
 		return obraSocial;
 	}
 
-	public void setObraSocial(String obraSocial) {
+	public void setObraSocial(ObraSocial obraSocial) {
 		this.obraSocial = obraSocial;
 	}
-
-	public String getNroAfiliado() {
-		return nroAfiliado;
-	}
-
-	public void setNroAfiliado(String nroAfiliado) {
-		this.nroAfiliado = nroAfiliado;
-	}
-	
 	
 }
