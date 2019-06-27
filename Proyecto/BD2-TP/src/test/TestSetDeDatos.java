@@ -191,109 +191,109 @@ public class TestSetDeDatos {
 				new Venta(24, new Date(), "0001-0024", 280f, "efectivo", venta24 , encargado1, empleados1.get(2))
 			);
 		
-		// Items de Ventas de Sucursal 1
-				List<ItemVenta> venta25 = asList(
-						new ItemVenta(1, productos.get(0), 1, productos.get(0).getPrecio())
-					);
-				List<ItemVenta> venta26 = asList(
-						new ItemVenta(3, productos.get(9), 2, productos.get(9).getPrecio()),
-						new ItemVenta(4, productos.get(1), 1, productos.get(1).getPrecio())
-					);
-				List<ItemVenta> venta27 = asList(
-						new ItemVenta(5, productos.get(4), 1, productos.get(4).getPrecio()),
-						new ItemVenta(6, productos.get(2), 1, productos.get(2).getPrecio())
-					);
-				List<ItemVenta> venta28 = asList(
-						new ItemVenta(7, productos.get(7), 1, productos.get(7).getPrecio()),
-						new ItemVenta(8, productos.get(8), 2, productos.get(8).getPrecio())
-					);
-				List<ItemVenta> venta29 = asList(
-						new ItemVenta(9, productos.get(5), 1, productos.get(9).getPrecio()),
-					);
-				List<ItemVenta> venta30 = asList(
-						new ItemVenta(11, productos.get(3), 1, productos.get(3).getPrecio())
-					);
-				List<ItemVenta> venta31 = asList(
-						new ItemVenta(12, productos.get(4), 1, productos.get(4).getPrecio())
-					);
-				List<ItemVenta> venta32 = asList(
-						new ItemVenta(13, productos.get(0), 1, productos.get(0).getPrecio()),
-						new ItemVenta(14, productos.get(1), 1, productos.get(1).getPrecio()),
-						new ItemVenta(15, productos.get(7), 1, productos.get(7).getPrecio())
-					);
-				List<ItemVenta> venta33 = asList(
-						new ItemVenta(16, productos.get(5), 1, productos.get(5).getPrecio())
-					);
-				List<ItemVenta> venta34 = asList(
-						new ItemVenta(17, productos.get(8), 2, productos.get(8).getPrecio())
-					);
-				List<ItemVenta> venta35 = asList(
-						new ItemVenta(18, productos.get(1), 1, productos.get(1).getPrecio()),
-						new ItemVenta(19, productos.get(6), 1, productos.get(6).getPrecio())
-					);
-				List<ItemVenta> venta36 = asList(
-						new ItemVenta(20, productos.get(2), 1, productos.get(2).getPrecio()),
-						new ItemVenta(21, productos.get(3), 2, productos.get(3).getPrecio())
-					);
-				List<ItemVenta> venta37 = asList(
-						new ItemVenta(22, productos.get(7), 2, productos.get(7).getPrecio())
-					);
-				List<ItemVenta> venta38 = asList(
-						new ItemVenta(23, productos.get(3), 1, productos.get(3).getPrecio()),
-						new ItemVenta(24, productos.get(9), 1, productos.get(9).getPrecio())
-					);
-				List<ItemVenta> venta39 = asList(
-						new ItemVenta(25, productos.get(4), 2, productos.get(4).getPrecio())
-					);
-				List<ItemVenta> venta40 = asList(
-						new ItemVenta(26, productos.get(3), 2, productos.get(3).getPrecio())
-					);
-				List<ItemVenta> venta41 = asList(
-						new ItemVenta(27, productos.get(2), 1, productos.get(2).getPrecio())
-					);
-				List<ItemVenta> venta42 = asList(
-						new ItemVenta(28, productos.get(6), 1, productos.get(6).getPrecio())
-					);
-				List<ItemVenta> venta43 = asList(
-						new ItemVenta(29, productos.get(1), 1, productos.get(1).getPrecio()),
-						new ItemVenta(30, productos.get(8), 1, productos.get(8).getPrecio())
-					);
-				List<ItemVenta> venta44 = asList(
-						new ItemVenta(31, productos.get(1), 1, productos.get(1).getPrecio())
-					);
-				List<ItemVenta> venta45 = asList(
-						new ItemVenta(32, productos.get(0), 2, productos.get(0).getPrecio())
-					);
-				List<ItemVenta> venta46 = asList(
-						new ItemVenta(34, productos.get(8), 3, productos.get(8).getPrecio())
-					);
-				List<ItemVenta> venta47 = asList(
-						new ItemVenta(35, productos.get(0), 1, productos.get(0).getPrecio())
-					);
-				List<ItemVenta> venta48 = asList(
-						new ItemVenta(37, productos.get(2), 1, productos.get(2).getPrecio()),
-						new ItemVenta(38, productos.get(6), 1, productos.get(6).getPrecio())
-					);
-				List<ItemVenta> venta49 = asList(
-						new ItemVenta(29, productos.get(0), 1, productos.get(0).getPrecio()),
-						new ItemVenta(30, productos.get(9), 2, productos.get(9).getPrecio())
-					);
-				List<ItemVenta> venta50 = asList(
-						new ItemVenta(31, productos.get(1), 1, productos.get(1).getPrecio())
-					);
-				List<ItemVenta> venta51 = asList(
-						new ItemVenta(32, productos.get(7), 2, productos.get(7).getPrecio())
-					);
-				List<ItemVenta> venta52 = asList(
-						new ItemVenta(34, productos.get(8), 3, productos.get(8).getPrecio())
-					);
-				List<ItemVenta> venta53 = asList(
-						new ItemVenta(35, productos.get(0), 3, productos.get(0).getPrecio())
-					);
-				List<ItemVenta> venta54 = asList(
-						new ItemVenta(37, productos.get(2), 1, productos.get(2).getPrecio()),
-						new ItemVenta(38, productos.get(7), 3, productos.get(7).getPrecio())
-					);
+		// Items de Ventas de Sucursal 2
+		List<ItemVenta> venta25 = asList(
+				new ItemVenta(39, productos.get(0), 1, productos.get(0).getPrecio())
+			);
+		List<ItemVenta> venta26 = asList(
+				new ItemVenta(40, productos.get(9), 2, productos.get(9).getPrecio()),
+				new ItemVenta(41, productos.get(1), 1, productos.get(1).getPrecio())
+			);
+		List<ItemVenta> venta27 = asList(
+				new ItemVenta(42, productos.get(4), 1, productos.get(4).getPrecio()),
+				new ItemVenta(43, productos.get(2), 1, productos.get(2).getPrecio())
+			);
+		List<ItemVenta> venta28 = asList(
+				new ItemVenta(44, productos.get(7), 1, productos.get(7).getPrecio()),
+				new ItemVenta(45, productos.get(8), 2, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta29 = asList(
+				new ItemVenta(46, productos.get(5), 1, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta30 = asList(
+				new ItemVenta(47, productos.get(3), 1, productos.get(3).getPrecio())
+			);
+		List<ItemVenta> venta31 = asList(
+				new ItemVenta(48, productos.get(4), 1, productos.get(4).getPrecio())
+			);
+		List<ItemVenta> venta32 = asList(
+				new ItemVenta(49, productos.get(0), 1, productos.get(0).getPrecio()),
+				new ItemVenta(50, productos.get(1), 1, productos.get(1).getPrecio()),
+				new ItemVenta(51, productos.get(7), 1, productos.get(7).getPrecio())
+			);
+		List<ItemVenta> venta33 = asList(
+				new ItemVenta(52, productos.get(5), 1, productos.get(5).getPrecio())
+			);
+		List<ItemVenta> venta34 = asList(
+				new ItemVenta(53, productos.get(8), 2, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta35 = asList(
+				new ItemVenta(54, productos.get(1), 1, productos.get(1).getPrecio()),
+				new ItemVenta(55, productos.get(6), 1, productos.get(6).getPrecio())
+			);
+		List<ItemVenta> venta36 = asList(
+				new ItemVenta(56, productos.get(2), 1, productos.get(2).getPrecio()),
+				new ItemVenta(57, productos.get(3), 2, productos.get(3).getPrecio())
+			);
+		List<ItemVenta> venta37 = asList(
+				new ItemVenta(58, productos.get(7), 2, productos.get(7).getPrecio())
+			);
+		List<ItemVenta> venta38 = asList(
+				new ItemVenta(59, productos.get(3), 1, productos.get(3).getPrecio()),
+				new ItemVenta(61, productos.get(9), 1, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta39 = asList(
+				new ItemVenta(62, productos.get(4), 2, productos.get(4).getPrecio())
+			);
+		List<ItemVenta> venta40 = asList(
+				new ItemVenta(63, productos.get(3), 2, productos.get(3).getPrecio())
+			);
+		List<ItemVenta> venta41 = asList(
+				new ItemVenta(64, productos.get(2), 1, productos.get(2).getPrecio())
+			);
+		List<ItemVenta> venta42 = asList(
+				new ItemVenta(65, productos.get(6), 1, productos.get(6).getPrecio())
+			);
+		List<ItemVenta> venta43 = asList(
+				new ItemVenta(66, productos.get(1), 1, productos.get(1).getPrecio()),
+				new ItemVenta(67, productos.get(8), 1, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta44 = asList(
+				new ItemVenta(68, productos.get(1), 1, productos.get(1).getPrecio())
+			);
+		List<ItemVenta> venta45 = asList(
+				new ItemVenta(69, productos.get(0), 2, productos.get(0).getPrecio())
+			);
+		List<ItemVenta> venta46 = asList(
+				new ItemVenta(70, productos.get(8), 3, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta47 = asList(
+				new ItemVenta(71, productos.get(0), 1, productos.get(0).getPrecio())
+			);
+		List<ItemVenta> venta48 = asList(
+				new ItemVenta(72, productos.get(2), 1, productos.get(2).getPrecio()),
+				new ItemVenta(73, productos.get(6), 1, productos.get(6).getPrecio())
+			);
+		List<ItemVenta> venta49 = asList(
+				new ItemVenta(74, productos.get(0), 1, productos.get(0).getPrecio()),
+				new ItemVenta(75, productos.get(9), 2, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta50 = asList(
+				new ItemVenta(76, productos.get(1), 1, productos.get(1).getPrecio())
+			);
+		List<ItemVenta> venta51 = asList(
+				new ItemVenta(77, productos.get(7), 2, productos.get(7).getPrecio())
+			);
+		List<ItemVenta> venta52 = asList(
+				new ItemVenta(78, productos.get(8), 3, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta53 = asList(
+				new ItemVenta(79, productos.get(0), 3, productos.get(0).getPrecio())
+			);
+		List<ItemVenta> venta54 = asList(
+				new ItemVenta(80, productos.get(2), 1, productos.get(2).getPrecio()),
+				new ItemVenta(81, productos.get(7), 3, productos.get(7).getPrecio())
+			);
 		
 		// Ventas Sucursal 2
 		List<Venta> ventas2 = asList(
@@ -329,44 +329,171 @@ public class TestSetDeDatos {
 				new Venta(54, new Date(), "0002-0054", 650f, "credito", venta54 , encargado2, empleados2.get(1))
 			);
 		
+		// Items de Ventas de Sucursal 3
+		List<ItemVenta> venta55 = asList(
+				new ItemVenta(82, productos.get(0), 3, productos.get(0).getPrecio())
+			);
+		List<ItemVenta> venta56 = asList(
+				new ItemVenta(83, productos.get(3), 2, productos.get(3).getPrecio()),
+				new ItemVenta(84, productos.get(5), 1, productos.get(5).getPrecio())
+			);
+		List<ItemVenta> venta57 = asList(
+				new ItemVenta(85, productos.get(1), 1, productos.get(1).getPrecio()),
+				new ItemVenta(86, productos.get(2), 1, productos.get(2).getPrecio())
+			);
+		List<ItemVenta> venta58 = asList(
+				new ItemVenta(87, productos.get(3), 2, productos.get(3).getPrecio()),
+				new ItemVenta(88, productos.get(8), 2, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta59 = asList(
+				new ItemVenta(89, productos.get(4), 1, productos.get(4).getPrecio())
+			);
+		List<ItemVenta> venta60 = asList(
+				new ItemVenta(90, productos.get(7), 3, productos.get(7).getPrecio())
+			);
+		List<ItemVenta> venta61 = asList(
+				new ItemVenta(91, productos.get(9), 2, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta62 = asList(
+				new ItemVenta(92, productos.get(1), 2, productos.get(1).getPrecio()),
+				new ItemVenta(93, productos.get(2), 1, productos.get(2).getPrecio()),
+				new ItemVenta(94, productos.get(9), 2, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta63 = asList(
+				new ItemVenta(95, productos.get(5), 2, productos.get(5).getPrecio())
+			);
+		List<ItemVenta> venta64 = asList(
+				new ItemVenta(96, productos.get(8), 3, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta65 = asList(
+				new ItemVenta(97, productos.get(2), 1, productos.get(2).getPrecio()),
+				new ItemVenta(98, productos.get(1), 2, productos.get(1).getPrecio())
+			);
+		List<ItemVenta> venta66 = asList(
+				new ItemVenta(99, productos.get(2), 2, productos.get(2).getPrecio()),
+				new ItemVenta(100, productos.get(3), 2, productos.get(3).getPrecio())
+			);
+		List<ItemVenta> venta67 = asList(
+				new ItemVenta(101, productos.get(7), 3, productos.get(7).getPrecio())
+			);
+		List<ItemVenta> venta68 = asList(
+				new ItemVenta(102, productos.get(0), 2, productos.get(0).getPrecio()),
+				new ItemVenta(103, productos.get(9), 1, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta69 = asList(
+				new ItemVenta(104, productos.get(4), 3, productos.get(4).getPrecio())
+			);
+		List<ItemVenta> venta70 = asList(
+				new ItemVenta(105, productos.get(8), 1, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta71 = asList(
+				new ItemVenta(106, productos.get(2), 2, productos.get(2).getPrecio())
+			);
+		List<ItemVenta> venta72 = asList(
+				new ItemVenta(107, productos.get(5), 2, productos.get(5).getPrecio())
+			);
+		List<ItemVenta> venta73 = asList(
+				new ItemVenta(108, productos.get(1), 1, productos.get(1).getPrecio()),
+				new ItemVenta(109, productos.get(8), 2, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta74 = asList(
+				new ItemVenta(110, productos.get(1), 1, productos.get(1).getPrecio())
+			);
+		List<ItemVenta> venta75 = asList(
+				new ItemVenta(111, productos.get(0), 3, productos.get(0).getPrecio())
+			);
+		List<ItemVenta> venta76 = asList(
+				new ItemVenta(112, productos.get(8), 2, productos.get(8).getPrecio())
+			);
+		List<ItemVenta> venta77 = asList(
+				new ItemVenta(113, productos.get(9), 1, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta78 = asList(
+				new ItemVenta(114, productos.get(3), 1, productos.get(3).getPrecio()),
+				new ItemVenta(115, productos.get(6), 1, productos.get(6).getPrecio())
+			);
+		List<ItemVenta> venta79 = asList(
+				new ItemVenta(116, productos.get(0), 1, productos.get(0).getPrecio()),
+				new ItemVenta(117, productos.get(9), 2, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta80 = asList(
+				new ItemVenta(118, productos.get(1), 2, productos.get(1).getPrecio())
+			);
+		List<ItemVenta> venta81 = asList(
+				new ItemVenta(119, productos.get(7), 3, productos.get(7).getPrecio())
+			);
+		List<ItemVenta> venta82 = asList(
+				new ItemVenta(120, productos.get(4), 3, productos.get(4).getPrecio())
+			);
+		List<ItemVenta> venta83 = asList(
+				new ItemVenta(121, productos.get(0), 3, productos.get(0).getPrecio())
+			);
+		List<ItemVenta> venta84 = asList(
+				new ItemVenta(122, productos.get(1), 1, productos.get(1).getPrecio()),
+				new ItemVenta(123, productos.get(7), 3, productos.get(7).getPrecio())
+			);
+		List<ItemVenta> venta85 = asList(
+				new ItemVenta(124, productos.get(0), 1, productos.get(0).getPrecio()),
+				new ItemVenta(125, productos.get(9), 2, productos.get(9).getPrecio())
+			);
+		List<ItemVenta> venta86 = asList(
+				new ItemVenta(126, productos.get(1), 1, productos.get(1).getPrecio())
+			);
+		List<ItemVenta> venta87 = asList(
+				new ItemVenta(127, productos.get(5), 2, productos.get(5).getPrecio())
+			);
+		List<ItemVenta> venta88 = asList(
+				new ItemVenta(128, productos.get(8), 1, productos.get(8).getPrecio()),
+				new ItemVenta(128, productos.get(4), 1, productos.get(4).getPrecio())
+			);
+		List<ItemVenta> venta89 = asList(
+				new ItemVenta(129, productos.get(0), 3, productos.get(0).getPrecio()),
+				new ItemVenta(129, productos.get(1), 2, productos.get(1).getPrecio()),
+				new ItemVenta(129, productos.get(2), 1, productos.get(2).getPrecio())
+			);
+		List<ItemVenta> venta90 = asList(
+				new ItemVenta(130, productos.get(2), 1, productos.get(2).getPrecio()),
+				new ItemVenta(131, productos.get(7), 1, productos.get(7).getPrecio())
+			);
+		
 		// Ventas Sucursal 3
 		List<Venta> ventas3 = asList(
-				new Venta(1),
-				new Venta(2),
-				new Venta(3),
-				new Venta(4),
-				new Venta(5),
-				new Venta(6),
-				new Venta(7),
-				new Venta(8),
-				new Venta(9),
-				new Venta(10),
-				new Venta(11),
-				new Venta(12),
-				new Venta(13),
-				new Venta(14),
-				new Venta(15),
-				new Venta(16),
-				new Venta(17),
-				new Venta(18),
-				new Venta(19),
-				new Venta(20),
-				new Venta(21),
-				new Venta(22),
-				new Venta(23),
-				new Venta(24),
-				new Venta(25),
-				new Venta(26),
-				new Venta(27),
-				new Venta(28),
-				new Venta(29),
-				new Venta(30),
-				new Venta(31),
-				new Venta(32),
-				new Venta(33),
-				new Venta(34),
-				new Venta(35),
-				new Venta(36)
+				new Venta(55, new Date(), "0003-0055", 774f, "credito", venta55 , encargado3, empleados3.get(1)),
+				new Venta(56, new Date(), "0003-0056", 346f, "efectivo", venta56 , encargado3, empleados3.get(2)),
+				new Venta(57, new Date(), "0003-0057", 350f, "efectivo", venta57 , encargado3, empleados3.get(2)),
+				new Venta(58, new Date(), "0003-0058", 336f, "credito", venta58 , encargado3, empleados3.get(2)),
+				new Venta(59, new Date(), "0003-0059", 240f, "efectivo", venta59 , encargado3, empleados3.get(3)),
+				new Venta(60, new Date(), "0003-0060", 450f, "debito", venta60 , encargado3, empleados3.get(3)),
+				new Venta(61, new Date(), "0003-0061", 160f, "debito", venta61 , encargado3, empleados3.get(3)),
+				new Venta(62, new Date(), "0003-0062", 660f, "credito", venta62 , encargado3, empleados3.get(3)),
+				new Venta(63, new Date(), "0003-0063", 200f, "efectivo", venta63 , encargado3, empleados3.get(1)),
+				new Venta(64, new Date(), "0003-0064", 135f, "debito", venta64 , encargado3, empleados3.get(3)),
+				new Venta(65, new Date(), "0003-0065", 500f, "debito", venta65 , encargado3, empleados3.get(2)),
+				new Venta(66, new Date(), "0003-0066", 646f, "credito", venta66 , encargado3, empleados3.get(2)),
+				new Venta(67, new Date(), "0003-0067", 450f, "efectivo", venta67 , encargado3, empleados3.get(2)),
+				new Venta(68, new Date(), "0003-0068", 596f, "credito", venta68 , encargado3, empleados3.get(3)),
+				new Venta(69, new Date(), "0003-0069", 720f, "efectivo", venta69 , encargado3, empleados3.get(1)),
+				new Venta(70, new Date(), "0003-0070", 45f, "credito", venta70 , encargado3, empleados3.get(3)),
+				new Venta(71, new Date(), "0003-0071", 400f, "efectivo", venta71 , encargado3, empleados3.get(3)),
+				new Venta(72, new Date(), "0003-0072", 200f, "debito", venta72 , encargado3, empleados3.get(2)),
+				new Venta(73, new Date(), "0003-0073", 348f, "credito", venta73 , encargado3, empleados3.get(2)),
+				new Venta(74, new Date(), "0003-0074", 150f, "credito", venta74 , encargado3, empleados3.get(2)),
+				new Venta(75, new Date(), "0003-0075", 774f, "efectivo", venta75 , encargado3, empleados3.get(3)),
+				new Venta(76, new Date(), "0003-0076", 90f, "credito", venta76 , encargado3, empleados3.get(3)),
+				new Venta(77, new Date(), "0003-0077", 80f, "debito", venta77 , encargado3, empleados3.get(1)),
+				new Venta(78, new Date(), "0003-0078", 201f, "debito", venta78 , encargado3, empleados3.get(1)),
+				new Venta(79, new Date(), "0003-0079", 418f, "debito", venta79 , encargado3, empleados3.get(1)),
+				new Venta(80, new Date(), "0003-0080", 300f, "credito", venta80 , encargado3, empleados3.get(3)),
+				new Venta(81, new Date(), "0003-0081", 450f, "credito", venta81 , encargado3, empleados3.get(3)),
+				new Venta(82, new Date(), "0003-0082", 720f, "efectivo", venta82 , encargado3, empleados3.get(1)),
+				new Venta(83, new Date(), "0003-0083", 774f, "credito", venta83 , encargado3, empleados3.get(2)),
+				new Venta(84, new Date(), "0003-0084", 600f, "credito", venta84 , encargado3, empleados3.get(2)),
+				new Venta(85, new Date(), "0003-0085", 418f, "efectivo", venta85 , encargado3, empleados3.get(1)),
+				new Venta(86, new Date(), "0003-0086", 150f, "credito", venta86 , encargado3, empleados3.get(3)),
+				new Venta(87, new Date(), "0003-0087", 200f, "credito", venta87 , encargado3, empleados3.get(3)),
+				new Venta(88, new Date(), "0003-0088", 285f, "debito", venta88 , encargado3, empleados3.get(3)),
+				new Venta(89, new Date(), "0003-0089", 1274f, "debito", venta89 , encargado3, empleados3.get(1)),
+				new Venta(90, new Date(), "0003-0090", 350f, "efectivo", venta90 , encargado3, empleados3.get(1))
 			);
 				
 	}
