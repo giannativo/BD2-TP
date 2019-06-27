@@ -6,6 +6,8 @@ import negocio.Mongo;
 
 public class TestConsulta1 {
 
+// 1.	Detalle y totales de ventas para la cadena completa y por sucursal, entre fechas.	
+	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		Mongo mongo = Mongo.getInstanciaMongo();

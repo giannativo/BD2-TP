@@ -121,6 +121,91 @@ public class Mongo {
 	}
 	
 	@SuppressWarnings("deprecation")
+	public void detallePorObraSocialYPorSucursalEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nDetalle de ventas Sucursal 1");
+			System.out.println("\nPami:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-"), eq("cliente.obraSocial.nombre","Pami")))
+					  )
+				).forEach(mostrarDetalleVenta);
+			System.out.println("\nOsde:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-"), eq("cliente.obraSocial.nombre","Osde")))
+					  )
+				).forEach(mostrarDetalleVenta);
+			System.out.println("\nGaleno:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-"), eq("cliente.obraSocial.nombre","Galeno")))
+					  )
+				).forEach(mostrarDetalleVenta);	
+			System.out.println("\nPrivados:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-"), eq("cliente.obraSocial.nombre",null)))
+					  )
+				).forEach(mostrarDetalleVenta);		
+			System.out.println("\nDetalle de ventas Sucursal 2");
+			System.out.println("\nPami:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-"), eq("cliente.obraSocial.nombre","Pami")))
+					  )
+				).forEach(mostrarDetalleVenta);
+			System.out.println("\nOsde:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-"), eq("cliente.obraSocial.nombre","Osde")))
+					  )
+				).forEach(mostrarDetalleVenta);
+			System.out.println("\nGaleno:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-"), eq("cliente.obraSocial.nombre","Galeno")))
+					  )
+				).forEach(mostrarDetalleVenta);	
+			System.out.println("\nPrivados:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-"), eq("cliente.obraSocial.nombre",null)))
+					  )
+				).forEach(mostrarDetalleVenta);		
+			System.out.println("\nDetalle de ventas Sucursal 3");
+			System.out.println("\nPami:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-"), eq("cliente.obraSocial.nombre","Pami")))
+					  )
+				).forEach(mostrarDetalleVenta);
+			System.out.println("\nOsde:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-"), eq("cliente.obraSocial.nombre","Osde")))
+					  )
+				).forEach(mostrarDetalleVenta);
+			System.out.println("\nGaleno:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-"), eq("cliente.obraSocial.nombre","Galeno")))
+					  )
+				).forEach(mostrarDetalleVenta);	
+			System.out.println("\nPrivados:");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-"), eq("cliente.obraSocial.nombre",null)))
+					  )
+				).forEach(mostrarDetalleVenta);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
 	public void detalleEntreFechas(Date fecha1, Date fecha2) {
 		try {
 			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
@@ -129,6 +214,40 @@ public class Mongo {
 			coll.aggregate(
 					asList(
 							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2)))
+					  )
+				).forEach(mostrarDetalleVenta);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void detallePorObraSocialEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nDetalle de ventas de Pami");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Pami")))
+					  )
+				).forEach(mostrarDetalleVenta);	
+			System.out.println("\nDetalle de ventas de Osde");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Osde")))
+					  )
+				).forEach(mostrarDetalleVenta);	
+			System.out.println("\nDetalle de ventas de Galeno");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Galeno")))
+					  )
+				).forEach(mostrarDetalleVenta);	
+			System.out.println("\nDetalle de ventas de Privados");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre",null)))
 					  )
 				).forEach(mostrarDetalleVenta);	
 		} catch (Exception e) {
@@ -162,6 +281,76 @@ public class Mongo {
 	}
 	
 	@SuppressWarnings("deprecation")
+	public void totalPorObraSocialYPorSucursalEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nTotal por Sucursal. ObraSocial Pami");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Pami"))),
+							Aggregates.project(
+						              Projections.fields(
+					            		  Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
+						            	)
+						              ),
+						    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
+						    Aggregates.sort(Sorts.ascending("_id"))
+							)
+				).forEach(mostrarTotalVentaSucursal);	
+			System.out.println("\nTotal por Sucursal. ObraSocial Osde");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Osde"))),
+							Aggregates.project(
+						              Projections.fields(
+					            		  Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
+						            	)
+						              ),
+						    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
+						    Aggregates.sort(Sorts.ascending("_id"))
+							)
+				).forEach(mostrarTotalVentaSucursal);	
+			System.out.println("\nTotal por Sucursal. ObraSocial Galeno");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Galeno"))),
+							Aggregates.project(
+						              Projections.fields(
+					            		  Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
+						            	)
+						              ),
+						    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
+						    Aggregates.sort(Sorts.ascending("_id"))
+							)
+				).forEach(mostrarTotalVentaSucursal);	
+			System.out.println("\nTotal por Sucursal. Sin ObraSocial (privados)");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre",null))),
+							Aggregates.project(
+						              Projections.fields(
+					            		  Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
+						            	)
+						              ),
+						    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
+						    Aggregates.sort(Sorts.ascending("_id"))
+							)
+				).forEach(mostrarTotalVentaSucursal);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
 	public void totalEntreFechas(Date fecha1, Date fecha2) {
 		try {
 			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
@@ -170,6 +359,68 @@ public class Mongo {
 			coll.aggregate(
 					asList(
 							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2))),
+							Aggregates.group("", Accumulators.sum("total", "$total")),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total")					                    
+						            	)
+						              )						    
+							)
+				).forEach(mostrarTotalVenta);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void totalPorObraSocialEntre(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nTotal Pami");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Pami"))),
+							Aggregates.group("", Accumulators.sum("total", "$total")),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total")					                    
+						            	)
+						              )						    
+							)
+				).forEach(mostrarTotalVenta);	
+			System.out.println("\nTotal Osde");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Osde"))),
+							Aggregates.group("", Accumulators.sum("total", "$total")),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total")					                    
+						            	)
+						              )						    
+							)
+				).forEach(mostrarTotalVenta);	
+			System.out.println("\nTotal Galeno");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre","Galeno"))),
+							Aggregates.group("", Accumulators.sum("total", "$total")),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total")					                    
+						            	)
+						              )						    
+							)
+				).forEach(mostrarTotalVenta);	
+			System.out.println("\nTotal Privados");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("cliente.obraSocial.nombre",null))),
 							Aggregates.group("", Accumulators.sum("total", "$total")),
 							Aggregates.project(
 						              Projections.fields(
