@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import modelo.ItemVenta;
 import modelo.Empleado;
+import modelo.Cliente;
 
 public class Venta {
 	private int idVenta;
@@ -14,9 +15,10 @@ public class Venta {
 	private List<ItemVenta> lstItems;
 	private Empleado empleado_caja;
 	private Empleado empleado_venta;
+	private Cliente cliente;
 	
 	public Venta(int idVenta, Date fecha, String nroTicket, float total, String tipoPago, 
-			List<ItemVenta> lstItems, Empleado empleado_caja, Empleado empleado_venta) {
+			List<ItemVenta> lstItems, Empleado empleado_caja, Empleado empleado_venta, Cliente cliente) {
 		super();
 		this.idVenta = idVenta;
 		this.fecha = fecha;
@@ -26,6 +28,7 @@ public class Venta {
 		this.lstItems = lstItems;
 		this.empleado_caja = empleado_caja;
 		this.empleado_venta = empleado_venta;
+		this.cliente = cliente;
 	}
 
 	public int getIdVenta() {
@@ -91,6 +94,15 @@ public class Venta {
 	public void setEmpleado_venta(Empleado empleado_venta) {
 		this.empleado_venta = empleado_venta;
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
 	
 	
 }
