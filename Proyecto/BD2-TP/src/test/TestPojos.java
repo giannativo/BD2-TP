@@ -8,6 +8,7 @@ import java.util.Date;
 
 import modelo.*;
 
+@SuppressWarnings("unused")
 public class TestPojos {
 
 	public static void main(String[] args) {
