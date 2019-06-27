@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Date;
 
 import modelo.*;
+import negocio.Mongo;
 
 public class TestSetDeDatos {
 
@@ -165,30 +166,30 @@ public class TestSetDeDatos {
 		
 		// Ventas Sucursal 1
 		List<Venta> ventas1 = asList(
-				new Venta(1, new Date(), "0001-0001", 408f, "efectivo", venta1 , encargado1, empleados1.get(1), clientes.get(0)),
-				new Venta(2, new Date(), "0001-0002", 350f, "efectivo", venta2 , encargado1, empleados1.get(1), clientes.get(1)),
-				new Venta(3, new Date(), "0001-0003", 323f, "debito", venta3 , encargado1, empleados1.get(2), clientes.get(2)),
-				new Venta(4, new Date(), "0001-0004", 240f, "debito", venta4 , encargado1, empleados1.get(3), clientes.get(3)),
-				new Venta(5, new Date(), "0001-0005", 550f, "credito", venta5 , encargado1, empleados1.get(3), clientes.get(4)),
-				new Venta(6, new Date(), "0001-0006", 123f, "efectivo", venta6 , encargado1, empleados1.get(3), clientes.get(5)),
-				new Venta(7, new Date(), "0001-0007", 240f, "credito", venta7 , encargado1, empleados1.get(1), clientes.get(6)),
-				new Venta(8, new Date(), "0001-0008", 223f, "efectivo", venta8 , encargado1, empleados1.get(2), clientes.get(7)),
-				new Venta(9, new Date(), "0001-0009", 100f, "debito", venta9 , encargado1, empleados1.get(2), clientes.get(8)),
-				new Venta(10, new Date(), "0001-0010", 90f, "efectivo", venta10 , encargado1, empleados1.get(1), clientes.get(9)),
-				new Venta(11, new Date(), "0001-0011", 300f, "credito", venta11 , encargado1, empleados1.get(3), clientes.get(0)),
-				new Venta(12, new Date(), "0001-0012", 550f, "efectivo", venta12 , encargado1, empleados1.get(3), clientes.get(1)),
-				new Venta(13, new Date(), "0001-0013", 150f, "debito", venta13 , encargado1, empleados1.get(3), clientes.get(2)),
-				new Venta(14, new Date(), "0001-0014", 283f, "credito", venta14 , encargado1, empleados1.get(1), clientes.get(3)),
-				new Venta(15, new Date(), "0001-0015", 480f, "efectivo", venta15 , encargado1, empleados1.get(2), clientes.get(4)),
-				new Venta(16, new Date(), "0001-0016", 123f, "debito", venta16 , encargado1, empleados1.get(2), clientes.get(5)),
-				new Venta(17, new Date(), "0001-0017", 200f, "efectivo", venta17 , encargado1, empleados1.get(2), clientes.get(6)),
-				new Venta(18, new Date(), "0001-0018", 78f, "efectivo", venta18 , encargado1, empleados1.get(1), clientes.get(7)),
-				new Venta(19, new Date(), "0001-0019", 245f, "efectivo", venta19 , encargado1, empleados1.get(3), clientes.get(8)),
-				new Venta(20, new Date(), "0001-0020", 150f, "debito", venta20 , encargado1, empleados1.get(3), clientes.get(9)),
-				new Venta(21, new Date(), "0001-0021", 516f, "efectivo", venta21 , encargado1, empleados1.get(2), clientes.get(0)),
-				new Venta(22, new Date(), "0001-0022", 135f, "credito", venta22 , encargado1, empleados1.get(1), clientes.get(1)),
-				new Venta(23, new Date(), "0001-0023", 258f, "debito", venta23 , encargado1, empleados1.get(1), clientes.get(2)),
-				new Venta(24, new Date(), "0001-0024", 280f, "efectivo", venta24 , encargado1, empleados1.get(2), clientes.get(3))
+				new Venta(1, new Date(), "0001-0001", 408f, "efectivo", venta1 , encargado1, empleados1.get(0), clientes.get(0)),
+				new Venta(2, new Date(), "0001-0002", 350f, "efectivo", venta2 , encargado1, empleados1.get(0), clientes.get(1)),
+				new Venta(3, new Date(), "0001-0003", 323f, "debito", venta3 , encargado1, empleados1.get(1), clientes.get(2)),
+				new Venta(4, new Date(), "0001-0004", 240f, "debito", venta4 , encargado1, empleados1.get(2), clientes.get(3)),
+				new Venta(5, new Date(), "0001-0005", 550f, "credito", venta5 , encargado1, empleados1.get(2), clientes.get(4)),
+				new Venta(6, new Date(), "0001-0006", 123f, "efectivo", venta6 , encargado1, empleados1.get(2), clientes.get(5)),
+				new Venta(7, new Date(), "0001-0007", 240f, "credito", venta7 , encargado1, empleados1.get(0), clientes.get(6)),
+				new Venta(8, new Date(), "0001-0008", 223f, "efectivo", venta8 , encargado1, empleados1.get(1), clientes.get(7)),
+				new Venta(9, new Date(), "0001-0009", 100f, "debito", venta9 , encargado1, empleados1.get(1), clientes.get(8)),
+				new Venta(10, new Date(), "0001-0010", 90f, "efectivo", venta10 , encargado1, empleados1.get(0), clientes.get(9)),
+				new Venta(11, new Date(), "0001-0011", 300f, "credito", venta11 , encargado1, empleados1.get(2), clientes.get(0)),
+				new Venta(12, new Date(), "0001-0012", 550f, "efectivo", venta12 , encargado1, empleados1.get(2), clientes.get(1)),
+				new Venta(13, new Date(), "0001-0013", 150f, "debito", venta13 , encargado1, empleados1.get(2), clientes.get(2)),
+				new Venta(14, new Date(), "0001-0014", 283f, "credito", venta14 , encargado1, empleados1.get(0), clientes.get(3)),
+				new Venta(15, new Date(), "0001-0015", 480f, "efectivo", venta15 , encargado1, empleados1.get(1), clientes.get(4)),
+				new Venta(16, new Date(), "0001-0016", 123f, "debito", venta16 , encargado1, empleados1.get(1), clientes.get(5)),
+				new Venta(17, new Date(), "0001-0017", 200f, "efectivo", venta17 , encargado1, empleados1.get(1), clientes.get(6)),
+				new Venta(18, new Date(), "0001-0018", 78f, "efectivo", venta18 , encargado1, empleados1.get(0), clientes.get(7)),
+				new Venta(19, new Date(), "0001-0019", 245f, "efectivo", venta19 , encargado1, empleados1.get(2), clientes.get(8)),
+				new Venta(20, new Date(), "0001-0020", 150f, "debito", venta20 , encargado1, empleados1.get(2), clientes.get(9)),
+				new Venta(21, new Date(), "0001-0021", 516f, "efectivo", venta21 , encargado1, empleados1.get(1), clientes.get(0)),
+				new Venta(22, new Date(), "0001-0022", 135f, "credito", venta22 , encargado1, empleados1.get(0), clientes.get(1)),
+				new Venta(23, new Date(), "0001-0023", 258f, "debito", venta23 , encargado1, empleados1.get(0), clientes.get(2)),
+				new Venta(24, new Date(), "0001-0024", 280f, "efectivo", venta24 , encargado1, empleados1.get(1), clientes.get(3))
 			);
 		
 		// Items de Ventas de Sucursal 2
@@ -297,36 +298,36 @@ public class TestSetDeDatos {
 		
 		// Ventas Sucursal 2
 		List<Venta> ventas2 = asList(
-				new Venta(25, new Date(), "0002-0025", 258f, "debito", venta25 , encargado2, empleados2.get(1), clientes.get(0)),
-				new Venta(26, new Date(), "0002-0026", 310f, "debito", venta26 , encargado2, empleados2.get(1), clientes.get(1)),
-				new Venta(27, new Date(), "0002-0027", 440f, "credito", venta27 , encargado2, empleados2.get(2), clientes.get(2)),
-				new Venta(28, new Date(), "0002-0028", 240f, "credito", venta28 , encargado2, empleados2.get(2), clientes.get(3)),
-				new Venta(29, new Date(), "0002-0029", 80f, "efectivo", venta29 , encargado2, empleados2.get(3), clientes.get(4)),
-				new Venta(30, new Date(), "0002-0030", 123f, "efectivo", venta30 , encargado2, empleados2.get(3), clientes.get(5)),
-				new Venta(31, new Date(), "0002-0031", 240f, "efectivo", venta31 , encargado2, empleados2.get(3), clientes.get(6)),
-				new Venta(32, new Date(), "0002-0032", 558f, "debito", venta32 , encargado2, empleados2.get(1), clientes.get(7)),
-				new Venta(33, new Date(), "0002-0033", 100f, "credito", venta33 , encargado2, empleados2.get(2), clientes.get(8)),
-				new Venta(34, new Date(), "0002-0034", 90f, "credito", venta34 , encargado2, empleados2.get(2), clientes.get(9)),
-				new Venta(35, new Date(), "0002-0035", 228f, "efectivo", venta35 , encargado2, empleados2.get(2), clientes.get(0)),
-				new Venta(36, new Date(), "0002-0036", 446f, "debito", venta36 , encargado2, empleados2.get(1), clientes.get(1)),
-				new Venta(37, new Date(), "0002-0037", 300f, "efectivo", venta37 , encargado2, empleados2.get(3), clientes.get(2)),
-				new Venta(38, new Date(), "0002-0038", 203f, "efectivo", venta38 , encargado2, empleados2.get(3), clientes.get(3)),
-				new Venta(39, new Date(), "0002-0039", 480f, "credito", venta39 , encargado2, empleados2.get(3), clientes.get(4)),
-				new Venta(40, new Date(), "0002-0040", 246f, "credito", venta40 , encargado2, empleados2.get(1), clientes.get(5)),
-				new Venta(41, new Date(), "0002-0041", 200f, "efectivo", venta41 , encargado2, empleados2.get(2), clientes.get(6)),
-				new Venta(42, new Date(), "0002-0042", 78f, "efectivo", venta42 , encargado2, empleados2.get(2), clientes.get(7)),
-				new Venta(43, new Date(), "0002-0043", 195f, "efectivo", venta43 , encargado2, empleados2.get(1), clientes.get(8)),
-				new Venta(44, new Date(), "0002-0044", 150f, "debito", venta44 , encargado2, empleados2.get(3), clientes.get(9)),
-				new Venta(45, new Date(), "0002-0045", 516f, "debito", venta45 , encargado2, empleados2.get(1), clientes.get(0)),
-				new Venta(46, new Date(), "0002-0046", 135f, "efectivo", venta46 , encargado2, empleados2.get(2), clientes.get(1)),
-				new Venta(47, new Date(), "0002-0047", 258f, "efectivo", venta47 , encargado2, empleados2.get(2), clientes.get(2)),
-				new Venta(48, new Date(), "0002-0048", 278f, "efectivo", venta48 , encargado2, empleados2.get(2), clientes.get(3)),
-				new Venta(49, new Date(), "0002-0049", 418f, "efectivo", venta49 , encargado2, empleados2.get(2), clientes.get(4)),
-				new Venta(50, new Date(), "0002-0050", 150f, "debito", venta50 , encargado2, empleados2.get(3), clientes.get(5)),
-				new Venta(51, new Date(), "0002-0051", 300f, "credito", venta51 , encargado2, empleados2.get(3), clientes.get(6)),
-				new Venta(52, new Date(), "0002-0052", 135f, "debito", venta52 , encargado2, empleados2.get(1), clientes.get(7)),
-				new Venta(53, new Date(), "0002-0053", 774f, "credito", venta53 , encargado2, empleados2.get(2), clientes.get(8)),
-				new Venta(54, new Date(), "0002-0054", 650f, "credito", venta54 , encargado2, empleados2.get(1), clientes.get(9))
+				new Venta(25, new Date(), "0002-0025", 258f, "debito", venta25 , encargado2, empleados2.get(0), clientes.get(0)),
+				new Venta(26, new Date(), "0002-0026", 310f, "debito", venta26 , encargado2, empleados2.get(0), clientes.get(1)),
+				new Venta(27, new Date(), "0002-0027", 440f, "credito", venta27 , encargado2, empleados2.get(1), clientes.get(2)),
+				new Venta(28, new Date(), "0002-0028", 240f, "credito", venta28 , encargado2, empleados2.get(1), clientes.get(3)),
+				new Venta(29, new Date(), "0002-0029", 80f, "efectivo", venta29 , encargado2, empleados2.get(2), clientes.get(4)),
+				new Venta(30, new Date(), "0002-0030", 123f, "efectivo", venta30 , encargado2, empleados2.get(2), clientes.get(5)),
+				new Venta(31, new Date(), "0002-0031", 240f, "efectivo", venta31 , encargado2, empleados2.get(2), clientes.get(6)),
+				new Venta(32, new Date(), "0002-0032", 558f, "debito", venta32 , encargado2, empleados2.get(0), clientes.get(7)),
+				new Venta(33, new Date(), "0002-0033", 100f, "credito", venta33 , encargado2, empleados2.get(1), clientes.get(8)),
+				new Venta(34, new Date(), "0002-0034", 90f, "credito", venta34 , encargado2, empleados2.get(1), clientes.get(9)),
+				new Venta(35, new Date(), "0002-0035", 228f, "efectivo", venta35 , encargado2, empleados2.get(1), clientes.get(0)),
+				new Venta(36, new Date(), "0002-0036", 446f, "debito", venta36 , encargado2, empleados2.get(0), clientes.get(1)),
+				new Venta(37, new Date(), "0002-0037", 300f, "efectivo", venta37 , encargado2, empleados2.get(2), clientes.get(2)),
+				new Venta(38, new Date(), "0002-0038", 203f, "efectivo", venta38 , encargado2, empleados2.get(2), clientes.get(3)),
+				new Venta(39, new Date(), "0002-0039", 480f, "credito", venta39 , encargado2, empleados2.get(2), clientes.get(4)),
+				new Venta(40, new Date(), "0002-0040", 246f, "credito", venta40 , encargado2, empleados2.get(0), clientes.get(5)),
+				new Venta(41, new Date(), "0002-0041", 200f, "efectivo", venta41 , encargado2, empleados2.get(1), clientes.get(6)),
+				new Venta(42, new Date(), "0002-0042", 78f, "efectivo", venta42 , encargado2, empleados2.get(1), clientes.get(7)),
+				new Venta(43, new Date(), "0002-0043", 195f, "efectivo", venta43 , encargado2, empleados2.get(0), clientes.get(8)),
+				new Venta(44, new Date(), "0002-0044", 150f, "debito", venta44 , encargado2, empleados2.get(2), clientes.get(9)),
+				new Venta(45, new Date(), "0002-0045", 516f, "debito", venta45 , encargado2, empleados2.get(0), clientes.get(0)),
+				new Venta(46, new Date(), "0002-0046", 135f, "efectivo", venta46 , encargado2, empleados2.get(1), clientes.get(1)),
+				new Venta(47, new Date(), "0002-0047", 258f, "efectivo", venta47 , encargado2, empleados2.get(1), clientes.get(2)),
+				new Venta(48, new Date(), "0002-0048", 278f, "efectivo", venta48 , encargado2, empleados2.get(1), clientes.get(3)),
+				new Venta(49, new Date(), "0002-0049", 418f, "efectivo", venta49 , encargado2, empleados2.get(1), clientes.get(4)),
+				new Venta(50, new Date(), "0002-0050", 150f, "debito", venta50 , encargado2, empleados2.get(2), clientes.get(5)),
+				new Venta(51, new Date(), "0002-0051", 300f, "credito", venta51 , encargado2, empleados2.get(2), clientes.get(6)),
+				new Venta(52, new Date(), "0002-0052", 135f, "debito", venta52 , encargado2, empleados2.get(0), clientes.get(7)),
+				new Venta(53, new Date(), "0002-0053", 774f, "credito", venta53 , encargado2, empleados2.get(1), clientes.get(8)),
+				new Venta(54, new Date(), "0002-0054", 650f, "credito", venta54 , encargado2, empleados2.get(0), clientes.get(9))
 			);
 		
 		// Items de Ventas de Sucursal 3
@@ -458,42 +459,50 @@ public class TestSetDeDatos {
 		
 		// Ventas Sucursal 3
 		List<Venta> ventas3 = asList(
-				new Venta(55, new Date(), "0003-0055", 774f, "credito", venta55 , encargado3, empleados3.get(1), clientes.get(0)),
-				new Venta(56, new Date(), "0003-0056", 346f, "efectivo", venta56 , encargado3, empleados3.get(2), clientes.get(1)),
-				new Venta(57, new Date(), "0003-0057", 350f, "efectivo", venta57 , encargado3, empleados3.get(2), clientes.get(2)),
-				new Venta(58, new Date(), "0003-0058", 336f, "credito", venta58 , encargado3, empleados3.get(2), clientes.get(3)),
-				new Venta(59, new Date(), "0003-0059", 240f, "efectivo", venta59 , encargado3, empleados3.get(3), clientes.get(4)),
-				new Venta(60, new Date(), "0003-0060", 450f, "debito", venta60 , encargado3, empleados3.get(3), clientes.get(5)),
-				new Venta(61, new Date(), "0003-0061", 160f, "debito", venta61 , encargado3, empleados3.get(3), clientes.get(6)),
-				new Venta(62, new Date(), "0003-0062", 660f, "credito", venta62 , encargado3, empleados3.get(3), clientes.get(7)),
-				new Venta(63, new Date(), "0003-0063", 200f, "efectivo", venta63 , encargado3, empleados3.get(1), clientes.get(8)),
-				new Venta(64, new Date(), "0003-0064", 135f, "debito", venta64 , encargado3, empleados3.get(3), clientes.get(9)),
-				new Venta(65, new Date(), "0003-0065", 500f, "debito", venta65 , encargado3, empleados3.get(2), clientes.get(0)),
-				new Venta(66, new Date(), "0003-0066", 646f, "credito", venta66 , encargado3, empleados3.get(2), clientes.get(1)),
-				new Venta(67, new Date(), "0003-0067", 450f, "efectivo", venta67 , encargado3, empleados3.get(2), clientes.get(2)),
-				new Venta(68, new Date(), "0003-0068", 596f, "credito", venta68 , encargado3, empleados3.get(3), clientes.get(3)),
-				new Venta(69, new Date(), "0003-0069", 720f, "efectivo", venta69 , encargado3, empleados3.get(1), clientes.get(4)),
-				new Venta(70, new Date(), "0003-0070", 45f, "credito", venta70 , encargado3, empleados3.get(3), clientes.get(5)),
-				new Venta(71, new Date(), "0003-0071", 400f, "efectivo", venta71 , encargado3, empleados3.get(3), clientes.get(6)),
-				new Venta(72, new Date(), "0003-0072", 200f, "debito", venta72 , encargado3, empleados3.get(2), clientes.get(7)),
-				new Venta(73, new Date(), "0003-0073", 348f, "credito", venta73 , encargado3, empleados3.get(2), clientes.get(8)),
-				new Venta(74, new Date(), "0003-0074", 150f, "credito", venta74 , encargado3, empleados3.get(2), clientes.get(9)),
-				new Venta(75, new Date(), "0003-0075", 774f, "efectivo", venta75 , encargado3, empleados3.get(3), clientes.get(0)),
-				new Venta(76, new Date(), "0003-0076", 90f, "credito", venta76 , encargado3, empleados3.get(3), clientes.get(1)),
-				new Venta(77, new Date(), "0003-0077", 80f, "debito", venta77 , encargado3, empleados3.get(1), clientes.get(2)),
-				new Venta(78, new Date(), "0003-0078", 201f, "debito", venta78 , encargado3, empleados3.get(1), clientes.get(3)),
-				new Venta(79, new Date(), "0003-0079", 418f, "debito", venta79 , encargado3, empleados3.get(1), clientes.get(4)),
-				new Venta(80, new Date(), "0003-0080", 300f, "credito", venta80 , encargado3, empleados3.get(3), clientes.get(5)),
-				new Venta(81, new Date(), "0003-0081", 450f, "credito", venta81 , encargado3, empleados3.get(3), clientes.get(6)),
-				new Venta(82, new Date(), "0003-0082", 720f, "efectivo", venta82 , encargado3, empleados3.get(1), clientes.get(7)),
-				new Venta(83, new Date(), "0003-0083", 774f, "credito", venta83 , encargado3, empleados3.get(2), clientes.get(8)),
-				new Venta(84, new Date(), "0003-0084", 600f, "credito", venta84 , encargado3, empleados3.get(2), clientes.get(9)),
-				new Venta(85, new Date(), "0003-0085", 418f, "efectivo", venta85 , encargado3, empleados3.get(1), clientes.get(0)),
-				new Venta(86, new Date(), "0003-0086", 150f, "credito", venta86 , encargado3, empleados3.get(3), clientes.get(1)),
-				new Venta(87, new Date(), "0003-0087", 200f, "credito", venta87 , encargado3, empleados3.get(3), clientes.get(2)),
-				new Venta(88, new Date(), "0003-0088", 285f, "debito", venta88 , encargado3, empleados3.get(3), clientes.get(3)),
-				new Venta(89, new Date(), "0003-0089", 1274f, "debito", venta89 , encargado3, empleados3.get(1), clientes.get(4)),
-				new Venta(90, new Date(), "0003-0090", 350f, "efectivo", venta90 , encargado3, empleados3.get(1), clientes.get(5))
+				new Venta(55, new Date(), "0003-0055", 774f, "credito", venta55 , encargado3, empleados3.get(0), clientes.get(0)),
+				new Venta(56, new Date(), "0003-0056", 346f, "efectivo", venta56 , encargado3, empleados3.get(1), clientes.get(1)),
+				new Venta(57, new Date(), "0003-0057", 350f, "efectivo", venta57 , encargado3, empleados3.get(1), clientes.get(2)),
+				new Venta(58, new Date(), "0003-0058", 336f, "credito", venta58 , encargado3, empleados3.get(1), clientes.get(3)),
+				new Venta(59, new Date(), "0003-0059", 240f, "efectivo", venta59 , encargado3, empleados3.get(2), clientes.get(4)),
+				new Venta(60, new Date(), "0003-0060", 450f, "debito", venta60 , encargado3, empleados3.get(2), clientes.get(5)),
+				new Venta(61, new Date(), "0003-0061", 160f, "debito", venta61 , encargado3, empleados3.get(2), clientes.get(6)),
+				new Venta(62, new Date(), "0003-0062", 660f, "credito", venta62 , encargado3, empleados3.get(2), clientes.get(7)),
+				new Venta(63, new Date(), "0003-0063", 200f, "efectivo", venta63 , encargado3, empleados3.get(0), clientes.get(8)),
+				new Venta(64, new Date(), "0003-0064", 135f, "debito", venta64 , encargado3, empleados3.get(2), clientes.get(9)),
+				new Venta(65, new Date(), "0003-0065", 500f, "debito", venta65 , encargado3, empleados3.get(1), clientes.get(0)),
+				new Venta(66, new Date(), "0003-0066", 646f, "credito", venta66 , encargado3, empleados3.get(1), clientes.get(1)),
+				new Venta(67, new Date(), "0003-0067", 450f, "efectivo", venta67 , encargado3, empleados3.get(1), clientes.get(2)),
+				new Venta(68, new Date(), "0003-0068", 596f, "credito", venta68 , encargado3, empleados3.get(2), clientes.get(3)),
+				new Venta(69, new Date(), "0003-0069", 720f, "efectivo", venta69 , encargado3, empleados3.get(0), clientes.get(4)),
+				new Venta(70, new Date(), "0003-0070", 45f, "credito", venta70 , encargado3, empleados3.get(2), clientes.get(5)),
+				new Venta(71, new Date(), "0003-0071", 400f, "efectivo", venta71 , encargado3, empleados3.get(2), clientes.get(6)),
+				new Venta(72, new Date(), "0003-0072", 200f, "debito", venta72 , encargado3, empleados3.get(1), clientes.get(7)),
+				new Venta(73, new Date(), "0003-0073", 348f, "credito", venta73 , encargado3, empleados3.get(1), clientes.get(8)),
+				new Venta(74, new Date(), "0003-0074", 150f, "credito", venta74 , encargado3, empleados3.get(1), clientes.get(9)),
+				new Venta(75, new Date(), "0003-0075", 774f, "efectivo", venta75 , encargado3, empleados3.get(2), clientes.get(0)),
+				new Venta(76, new Date(), "0003-0076", 90f, "credito", venta76 , encargado3, empleados3.get(2), clientes.get(1)),
+				new Venta(77, new Date(), "0003-0077", 80f, "debito", venta77 , encargado3, empleados3.get(0), clientes.get(2)),
+				new Venta(78, new Date(), "0003-0078", 201f, "debito", venta78 , encargado3, empleados3.get(0), clientes.get(3)),
+				new Venta(79, new Date(), "0003-0079", 418f, "debito", venta79 , encargado3, empleados3.get(0), clientes.get(4)),
+				new Venta(80, new Date(), "0003-0080", 300f, "credito", venta80 , encargado3, empleados3.get(2), clientes.get(5)),
+				new Venta(81, new Date(), "0003-0081", 450f, "credito", venta81 , encargado3, empleados3.get(2), clientes.get(6)),
+				new Venta(82, new Date(), "0003-0082", 720f, "efectivo", venta82 , encargado3, empleados3.get(0), clientes.get(7)),
+				new Venta(83, new Date(), "0003-0083", 774f, "credito", venta83 , encargado3, empleados3.get(1), clientes.get(8)),
+				new Venta(84, new Date(), "0003-0084", 600f, "credito", venta84 , encargado3, empleados3.get(1), clientes.get(9)),
+				new Venta(85, new Date(), "0003-0085", 418f, "efectivo", venta85 , encargado3, empleados3.get(0), clientes.get(0)),
+				new Venta(86, new Date(), "0003-0086", 150f, "credito", venta86 , encargado3, empleados3.get(2), clientes.get(1)),
+				new Venta(87, new Date(), "0003-0087", 200f, "credito", venta87 , encargado3, empleados3.get(2), clientes.get(2)),
+				new Venta(88, new Date(), "0003-0088", 285f, "debito", venta88 , encargado3, empleados3.get(2), clientes.get(3)),
+				new Venta(89, new Date(), "0003-0089", 1274f, "debito", venta89 , encargado3, empleados3.get(0), clientes.get(4)),
+				new Venta(90, new Date(), "0003-0090", 350f, "efectivo", venta90 , encargado3, empleados3.get(0), clientes.get(5))
 			);	
+		
+		Mongo mongo = Mongo.getInstanciaMongo();
+		
+		mongo.agregarVentas("venta", ventas1);
+		mongo.agregarVentas("venta", ventas2);
+		mongo.agregarVentas("venta", ventas3);
+		
+		mongo.getMongoClient().close();
 	}
 }
