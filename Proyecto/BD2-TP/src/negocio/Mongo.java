@@ -144,12 +144,16 @@ public class Mongo {
 	@SuppressWarnings("deprecation")
 	public void traerVentasEntreFechasPorSucursal(String codigoSucursal, Date fecha1, Date fecha2) {
 		try {
-			String rgx = "^(?i)"+Pattern.quote(codigoSucursal);
 			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
 			MongoCollection<Document> coll = database.getCollection("venta");
+			Document regQuery = new Document();
+			regQuery.append("$regex", "^(?i)"+Pattern.quote(codigoSucursal));
+			regQuery.append("$options", "i");
+			Document findQuery = new Document();
+			findQuery.append("nroTicket", regQuery);
 			coll.find(
-					and(gt("nroTicket", rgx), gte("fecha",fecha1), lte("fecha",fecha2))
-				).forEach(getDate);
+					and(findQuery, gte("fecha",fecha1), lte("fecha",fecha2))
+				).forEach(printBlock);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
