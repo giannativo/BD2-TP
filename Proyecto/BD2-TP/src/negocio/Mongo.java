@@ -7,6 +7,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
+import jdk.nashorn.internal.runtime.regexp.RegExp;
+
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import static com.mongodb.client.model.Filters.*;
@@ -15,6 +18,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import modelo.*;
 
@@ -135,14 +139,20 @@ public class Mongo {
 	           System.out.println(document.get("fecha"));
 	       }
 	};
-
-	public <E> void agregarDocumentos(String colleccion, List<E> documentos) {
-		try{
-			MongoDatabase database = this.getMongoClient().getDatabase(this.base);
-			MongoCollection<E> collection = database.getCollection(colleccion, E.class);
-			collection.insertMany(documentos);
+	
+	
+	@SuppressWarnings("deprecation")
+	public void traerVentasEntreFechasPorSucursal(String codigoSucursal, Date fecha1, Date fecha2) {
+		try {
+			String rgx = "^(?i)"+Pattern.quote(codigoSucursal);
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			coll.find(
+					and(gt("nroTicket", rgx), gte("fecha",fecha1), lte("fecha",fecha2))
+				).forEach(getDate);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 }
