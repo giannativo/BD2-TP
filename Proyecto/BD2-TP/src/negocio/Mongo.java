@@ -10,15 +10,21 @@ import com.mongodb.client.MongoDatabase;
 
 //import jdk.nashorn.internal.runtime.regexp.RegExp;
 
+import com.mongodb.client.model.Accumulators;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.Sorts;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import static com.mongodb.client.model.Filters.*;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
+import static java.util.Arrays.asList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import modelo.*;
 
@@ -35,6 +41,7 @@ public class Mongo {
 	}
 	
 	protected Mongo() {	
+		Logger.getLogger("org.mongodb.driver").setLevel(Level.OFF);
 		CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 		MongoClientSettings settings = MongoClientSettings.builder().codecRegistry(pojoCodecRegistry).build();
 		MongoClient mongoClient = MongoClients.create(settings);
@@ -66,7 +73,7 @@ public class Mongo {
 		try {
 			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
 			MongoCollection<Document> coll = database.getCollection("venta");
-			coll.find().forEach(getDate);
+			coll.find().forEach(mostrarFecha);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,7 +86,99 @@ public class Mongo {
 			MongoCollection<Document> coll = database.getCollection("venta");
 			coll.find(
 					and(gte("fecha",fecha1), lte("fecha",fecha2))
-				).forEach(getDate);
+				).forEach(mostrarFecha);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void detallePorSucursalEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nDetalle de ventas Sucursal 1");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-")))
+					  )
+				).forEach(mostrarDetalleVenta);		
+			System.out.println("\nDetalle de ventas Sucursal 2");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-")))
+					  )
+				).forEach(mostrarDetalleVenta);		
+			System.out.println("\nDetalle de ventas Sucursal 3");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-")))
+					  )
+				).forEach(mostrarDetalleVenta);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void detalleEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nDetalle de todas las ventas");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2)))
+					  )
+				).forEach(mostrarDetalleVenta);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void totalPorSucursalEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nTotal por Sucursal");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
+						            	)
+						              ),
+						    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
+						    Aggregates.sort(Sorts.ascending("_id"))
+							)
+				).forEach(mostrarTotalVentaSucursal);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void totalEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nTotal cadena");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2))),
+							Aggregates.group("", Accumulators.sum("total", "$total")),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total")					                    
+						            	)
+						              )						    
+							)
+				).forEach(mostrarTotalVenta);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,14 +231,14 @@ public class Mongo {
 	           System.out.println(document.toJson());
 	       }
 	};
-	
-	public Block<Document> getDate = new Block<Document>() {
+	// Mostrar solo fecha en formato Date
+	public Block<Document> mostrarFecha = new Block<Document>() {
 	       @Override
 	       public void apply(final Document document) {
 	           System.out.println(document.get("fecha"));
 	       }
 	};
-	
+
 	
 	@SuppressWarnings("deprecation")
 	public void traerVentasEntreFechasPorSucursal(String codigoSucursal, Date fecha1, Date fecha2) {
@@ -159,4 +258,31 @@ public class Mongo {
 		}
 	}
 	
+	// Mostrar detalle venta
+		public Block<Document> mostrarDetalleVenta = new Block<Document>() {
+		       @Override
+		       public void apply(final Document document) {
+		    	   System.out.println(
+		        		   "NroTicket: "+document.get("nroTicket") +
+		        		   " Fecha: "+document.get("fecha") +
+		        		   " Total: $ "+document.get("total")
+		    			   );
+		       }
+		};
+	// Mostrar total 
+			public Block<Document> mostrarTotalVenta = new Block<Document>() {
+			       @Override
+			       public void apply(final Document document) {
+			    	   System.out.println("Total: $ "+document.get("total"));
+			       }
+			};
+	// Mostrar total sucursal
+			public Block<Document> mostrarTotalVentaSucursal = new Block<Document>() {
+			       @Override
+			       public void apply(final Document document) {
+			    	   System.out.println("Sucursal: "+document.get("_id")
+			    	   		+ " Total: $ "+document.get("total"));
+			       }
+			};
+
 }
