@@ -4,30 +4,31 @@ import java.util.Date;
 import java.util.List;
 import modelo.ItemVenta;
 import modelo.Empleado;
+import modelo.Cliente;
 
 public class Venta {
 	private int idVenta;
 	private Date fecha;
-	private int nroTicket;
+	private String nroTicket;
 	private float total;
-	private int tipoPago;
-	private int cantProductos;
+	private String tipoPago;
 	private List<ItemVenta> lstItems;
 	private Empleado empleado_caja;
 	private Empleado empleado_venta;
+	private Cliente cliente;
 	
-	public Venta(int idVenta, Date fecha, int nroTicket, float total, int tipoPago, int cantProductos,
-			List<ItemVenta> lstItems, Empleado empleado_caja, Empleado empleado_venta) {
+	public Venta(int idVenta, Date fecha, String nroTicket, float total, String tipoPago, 
+			List<ItemVenta> lstItems, Empleado empleado_caja, Empleado empleado_venta, Cliente cliente) {
 		super();
 		this.idVenta = idVenta;
 		this.fecha = fecha;
 		this.nroTicket = nroTicket;
 		this.total = total;
 		this.tipoPago = tipoPago;
-		this.cantProductos = cantProductos;
 		this.lstItems = lstItems;
 		this.empleado_caja = empleado_caja;
 		this.empleado_venta = empleado_venta;
+		this.cliente = cliente;
 	}
 
 	public int getIdVenta() {
@@ -46,11 +47,11 @@ public class Venta {
 		this.fecha = fecha;
 	}
 
-	public int getNroTicket() {
+	public String getNroTicket() {
 		return nroTicket;
 	}
 
-	public void setNroTicket(int nroTicket) {
+	public void setNroTicket(String nroTicket) {
 		this.nroTicket = nroTicket;
 	}
 
@@ -62,20 +63,12 @@ public class Venta {
 		this.total = total;
 	}
 
-	public int getTipoPago() {
+	public String getTipoPago() {
 		return tipoPago;
 	}
 
-	public void setTipoPago(int tipoPago) {
+	public void setTipoPago(String tipoPago) {
 		this.tipoPago = tipoPago;
-	}
-
-	public int getCantProductos() {
-		return cantProductos;
-	}
-
-	public void setCantProductos(int cantProductos) {
-		this.cantProductos = cantProductos;
 	}
 
 	public List<ItemVenta> getLstItems() {
@@ -101,6 +94,15 @@ public class Venta {
 	public void setEmpleado_venta(Empleado empleado_venta) {
 		this.empleado_venta = empleado_venta;
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
 	
 	
 }
