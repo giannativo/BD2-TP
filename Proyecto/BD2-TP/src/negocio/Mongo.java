@@ -939,6 +939,82 @@ public class Mongo {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
+	public void rankingClientesPorCantidadEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nRanking de clientes de la cadena por cantidad");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("cliente.nombre"),
+					                      Projections.include("cliente.apellido"),
+					                      Projections.include("cliente.dni")
+						              )),
+							Aggregates.group("$cliente.dni", Accumulators.sum("cantidad", 1)),
+							Aggregates.sort(Sorts.descending("cantidad"))
+					)).forEach(mostrarRankingClienteCantidad);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	public void rankingClientesPorSucursalYCantidadEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nRanking de clientes de la Sucursal 1 por cantidad");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-"))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("cliente.nombre"),
+					                      Projections.include("cliente.apellido"),
+					                      Projections.include("cliente.dni")
+						              )),
+							Aggregates.group("$cliente.dni", Accumulators.sum("cantidad", 1)),
+							Aggregates.sort(Sorts.descending("cantidad"))
+					)).forEach(mostrarRankingClienteCantidad);	
+			System.out.println("\nRanking de clientes de la Sucursal 2 por cantidad");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-"))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("cliente.nombre"),
+					                      Projections.include("cliente.apellido"),
+					                      Projections.include("cliente.dni")
+						              )),
+							Aggregates.group("$cliente.dni", Accumulators.sum("cantidad", 1)),
+							Aggregates.sort(Sorts.descending("cantidad"))
+					)).forEach(mostrarRankingClienteCantidad);	
+			System.out.println("\nRanking de clientes de la Sucursal 3 por cantidad");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-"))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("cliente.nombre"),
+					                      Projections.include("cliente.apellido"),
+					                      Projections.include("cliente.dni")
+						              )),
+							Aggregates.group("$cliente.dni", Accumulators.sum("cantidad", 1)),
+							Aggregates.sort(Sorts.descending("cantidad"))
+					)).forEach(mostrarRankingClienteCantidad);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// Convertir e imprimir document como json
 	public Block<Document> printBlock = new Block<Document>() {
 	       @Override
