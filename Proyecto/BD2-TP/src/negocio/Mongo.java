@@ -725,7 +725,7 @@ public class Mongo {
 						              )),
 							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("total", "$lstItems.precio")),
 							Aggregates.sort(Sorts.descending("total"))
-					)).forEach(mostrarRanking);	
+					)).forEach(mostrarRankingMonto);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -749,7 +749,7 @@ public class Mongo {
 						              )),
 							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("total", "$lstItems.precio")),
 							Aggregates.sort(Sorts.descending("total"))
-					)).forEach(mostrarRanking);	
+					)).forEach(mostrarRankingMonto);	
 			System.out.println("\nRanking de ventas de la Sucursal 2 por monto de producto");
 			coll.aggregate(
 					asList(
@@ -763,7 +763,7 @@ public class Mongo {
 						              )),
 							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("total", "$lstItems.precio")),
 							Aggregates.sort(Sorts.descending("total"))
-					)).forEach(mostrarRanking);	
+					)).forEach(mostrarRankingMonto);	
 			System.out.println("\nRanking de ventas de la Sucursal 3 por monto de producto");
 			coll.aggregate(
 					asList(
@@ -777,7 +777,83 @@ public class Mongo {
 						              )),
 							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("total", "$lstItems.precio")),
 							Aggregates.sort(Sorts.descending("total"))
-					)).forEach(mostrarRanking);	
+					)).forEach(mostrarRankingMonto);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void rankingProductoPorCantidadEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nRanking de ventas de la cadena por cantidad de producto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2))),
+							Aggregates.unwind("$lstItems"),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+										  Projections.include("lstItems.cantidad"),
+										  Projections.include("lstItems.producto.descripcion")
+						              )),
+							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("cantidad", "$lstItems.cantidad")),
+							Aggregates.sort(Sorts.descending("cantidad"))
+					)).forEach(mostrarRankingCantidad);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void rankingProductoPorSucursalYCantidadEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nRanking de ventas de la Sucursal 1 por cantidad de producto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-"))),
+							Aggregates.unwind("$lstItems"),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+										  Projections.include("lstItems.cantidad"),
+										  Projections.include("lstItems.producto.descripcion")
+						              )),
+							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("cantidad", "$lstItems.cantidad")),
+							Aggregates.sort(Sorts.descending("cantidad"))
+					)).forEach(mostrarRankingCantidad);	
+			System.out.println("\nRanking de ventas de la Sucursal 2 por cantidad de producto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-"))),
+							Aggregates.unwind("$lstItems"),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+										  Projections.include("lstItems.cantidad"),
+										  Projections.include("lstItems.producto.descripcion")
+						              )),
+							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("cantidad", "$lstItems.cantidad")),
+							Aggregates.sort(Sorts.descending("cantidad"))
+					)).forEach(mostrarRankingCantidad);	
+			System.out.println("\nRanking de ventas de la Sucursal 3 por cantidad de producto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-"))),
+							Aggregates.unwind("$lstItems"),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+										  Projections.include("lstItems.cantidad"),
+										  Projections.include("lstItems.producto.descripcion")
+						              )),
+							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("cantidad", "$lstItems.cantidad")),
+							Aggregates.sort(Sorts.descending("cantidad"))
+					)).forEach(mostrarRankingCantidad);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -830,13 +906,20 @@ public class Mongo {
 	    	   		+ " Total: $ "+document.get("total"));
 	       }
 	};
-	// Mostrar total por tipo de producto
-	public Block<Document> mostrarRanking = new Block<Document>() {
+	// Mostrar Ranking por monto de producto
+	public Block<Document> mostrarRankingMonto = new Block<Document>() {
 	       @Override
 	       public void apply(final Document document) {
 	    	   System.out.println("Descripcion: "+document.get("_id")+" Total: $ "+document.get("total"));
 	       }
 	};
+	// Mostrar Ranking por cantidad de producto
+		public Block<Document> mostrarRankingCantidad = new Block<Document>() {
+		       @Override
+		       public void apply(final Document document) {
+		    	   System.out.println("Descripcion: "+document.get("_id")+" Cantidad: "+document.get("cantidad"));
+		       }
+		};
 			
 			@SuppressWarnings("deprecation")
 	public void totalPorMedioDePagoEntre(Date fecha1, Date fecha2) {
