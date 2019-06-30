@@ -707,6 +707,82 @@ public class Mongo {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
+	public void rankingProductoPorMontoEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nRanking de ventas de la cadena por monto de producto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2))),
+							Aggregates.unwind("$lstItems"),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+										  Projections.include("lstItems.precio"),
+										  Projections.include("lstItems.producto.descripcion")
+						              )),
+							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("total", "$lstItems.precio")),
+							Aggregates.sort(Sorts.descending("total"))
+					)).forEach(mostrarRanking);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void rankingProductoPorSucursalYMontoEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nRanking de ventas de la Sucursal 1 por monto de producto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-"))),
+							Aggregates.unwind("$lstItems"),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+										  Projections.include("lstItems.precio"),
+										  Projections.include("lstItems.producto.descripcion")
+						              )),
+							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("total", "$lstItems.precio")),
+							Aggregates.sort(Sorts.descending("total"))
+					)).forEach(mostrarRanking);	
+			System.out.println("\nRanking de ventas de la Sucursal 2 por monto de producto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-"))),
+							Aggregates.unwind("$lstItems"),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+										  Projections.include("lstItems.precio"),
+										  Projections.include("lstItems.producto.descripcion")
+						              )),
+							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("total", "$lstItems.precio")),
+							Aggregates.sort(Sorts.descending("total"))
+					)).forEach(mostrarRanking);	
+			System.out.println("\nRanking de ventas de la Sucursal 3 por monto de producto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-"))),
+							Aggregates.unwind("$lstItems"),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+										  Projections.include("lstItems.precio"),
+										  Projections.include("lstItems.producto.descripcion")
+						              )),
+							Aggregates.group("$lstItems.producto.descripcion", Accumulators.sum("total", "$lstItems.precio")),
+							Aggregates.sort(Sorts.descending("total"))
+					)).forEach(mostrarRanking);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// Convertir e imprimir document como json
 	public Block<Document> printBlock = new Block<Document>() {
 	       @Override
@@ -747,151 +823,156 @@ public class Mongo {
 	       }
 	};
 	// Mostrar total sucursal
-
-			public Block<Document> mostrarTotalVentaSucursal = new Block<Document>() {
-			       @Override
-			       public void apply(final Document document) {
-			    	   System.out.println("Sucursal: "+document.get("_id")
-			    	   		+ " Total: $ "+document.get("total"));
-			       }
-			};
-			
-			
-			@SuppressWarnings("deprecation")
-			public void totalPorMedioDePagoEntre(Date fecha1, Date fecha2) {
-				try {
-					MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
-					MongoCollection<Document> coll = database.getCollection("venta");
-					System.out.println("\nTotal Efectivo");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","efectivo"))),
-									Aggregates.group("", Accumulators.sum("total", "$total")),
-									Aggregates.project(
-								              Projections.fields(
-							                      Projections.excludeId(),
-							                      Projections.include("total")					                    
-								            	)
-								              )						    
-									)
-						).forEach(mostrarTotalVenta);	
-					System.out.println("\nTotal Debito");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","debito"))),
-									Aggregates.group("", Accumulators.sum("total", "$total")),
-									Aggregates.project(
-								              Projections.fields(
-							                      Projections.excludeId(),
-							                      Projections.include("total")					                    
-								            	)
-								              )						    
-									)
-						).forEach(mostrarTotalVenta);	
-					System.out.println("\nTotal Credito");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","credito"))),
-									Aggregates.group("", Accumulators.sum("total", "$total")),
-									Aggregates.project(
-								              Projections.fields(
-							                      Projections.excludeId(),
-							                      Projections.include("total")					                    
-								            	)
-								              )						    
-									)
-						).forEach(mostrarTotalVenta);	
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+	public Block<Document> mostrarTotalVentaSucursal = new Block<Document>() {
+	       @Override
+	       public void apply(final Document document) {
+	    	   System.out.println("Sucursal: "+document.get("_id")
+	    	   		+ " Total: $ "+document.get("total"));
+	       }
+	};
+	// Mostrar total por tipo de producto
+	public Block<Document> mostrarRanking = new Block<Document>() {
+	       @Override
+	       public void apply(final Document document) {
+	    	   System.out.println("Descripcion: "+document.get("_id")+" Total: $ "+document.get("total"));
+	       }
+	};
 			
 			@SuppressWarnings("deprecation")
-			public void detallePorMedioDePagoEntreFechas(Date fecha1, Date fecha2) {
-				try {
-					MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
-					MongoCollection<Document> coll = database.getCollection("venta");
-					System.out.println("\nDetalle de ventas en Efectivo");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","efectivo")))
-							  )
-						).forEach(mostrarDetalleVenta);	
-					System.out.println("\nDetalle de ventas con Debito");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","debito")))
-							  )
-						).forEach(mostrarDetalleVenta);	
-					System.out.println("\nDetalle de ventas con Credito");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","credito")))
-							  )
-						).forEach(mostrarDetalleVenta);		
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
-			
-			@SuppressWarnings("deprecation")
-			public void totalPorMedioDePagoYPorSucursalEntreFechas(Date fecha1, Date fecha2) {
-				try {
-					MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
-					MongoCollection<Document> coll = database.getCollection("venta");
-					System.out.println("\nTotal por Sucursal en Efectivo");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","efectivo"))),
-									Aggregates.project(
-								              Projections.fields(
-							            		  Projections.excludeId(),
-							                      Projections.include("total"),
-							                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
-								            	)
-								              ),
-								    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
-								    Aggregates.sort(Sorts.ascending("_id"))
-									)
-						).forEach(mostrarTotalVentaSucursal);	
-					System.out.println("\nTotal por Sucursal con Debito");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","debito"))),
-									Aggregates.project(
-								              Projections.fields(
-							            		  Projections.excludeId(),
-							                      Projections.include("total"),
-							                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
-								            	)
-								              ),
-								    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
-								    Aggregates.sort(Sorts.ascending("_id"))
-									)
-						).forEach(mostrarTotalVentaSucursal);	
-					System.out.println("\nTotal por Sucursal con Credito");
-					coll.aggregate(
-							asList(
-									Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","credito"))),
-									Aggregates.project(
-								              Projections.fields(
-							            		  Projections.excludeId(),
-							                      Projections.include("total"),
-							                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
-								            	)
-								              ),
-								    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
-								    Aggregates.sort(Sorts.ascending("_id"))
-									)
-						).forEach(mostrarTotalVentaSucursal);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
-			@SuppressWarnings("deprecation")
-			public void detallePorMedioDePagoYPorSucursalEntreFechas(Date fecha1, Date fecha2) {
+	public void totalPorMedioDePagoEntre(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nTotal Efectivo");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","efectivo"))),
+							Aggregates.group("", Accumulators.sum("total", "$total")),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total")					                    
+						            	)
+						              )						    
+							)
+				).forEach(mostrarTotalVenta);	
+			System.out.println("\nTotal Debito");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","debito"))),
+							Aggregates.group("", Accumulators.sum("total", "$total")),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total")					                    
+						            	)
+						              )						    
+							)
+				).forEach(mostrarTotalVenta);	
+			System.out.println("\nTotal Credito");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","credito"))),
+							Aggregates.group("", Accumulators.sum("total", "$total")),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total")					                    
+						            	)
+						              )						    
+							)
+				).forEach(mostrarTotalVenta);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void detallePorMedioDePagoEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nDetalle de ventas en Efectivo");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","efectivo")))
+					  )
+				).forEach(mostrarDetalleVenta);	
+			System.out.println("\nDetalle de ventas con Debito");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","debito")))
+					  )
+				).forEach(mostrarDetalleVenta);	
+			System.out.println("\nDetalle de ventas con Credito");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","credito")))
+					  )
+				).forEach(mostrarDetalleVenta);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@SuppressWarnings("deprecation")
+	public void totalPorMedioDePagoYPorSucursalEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nTotal por Sucursal en Efectivo");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","efectivo"))),
+							Aggregates.project(
+						              Projections.fields(
+					            		  Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
+						            	)
+						              ),
+						    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
+						    Aggregates.sort(Sorts.ascending("_id"))
+							)
+				).forEach(mostrarTotalVentaSucursal);	
+			System.out.println("\nTotal por Sucursal con Debito");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","debito"))),
+							Aggregates.project(
+						              Projections.fields(
+					            		  Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
+						            	)
+						              ),
+						    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
+						    Aggregates.sort(Sorts.ascending("_id"))
+							)
+				).forEach(mostrarTotalVentaSucursal);	
+			System.out.println("\nTotal por Sucursal con Credito");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), eq("tipoPago","credito"))),
+							Aggregates.project(
+						              Projections.fields(
+					            		  Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.computed("sucursal", new Document("$substr", asList("$nroTicket", 0, 4)))
+						            	)
+						              ),
+						    Aggregates.group("$sucursal", Accumulators.sum("total", "$total")),
+						    Aggregates.sort(Sorts.ascending("_id"))
+							)
+				).forEach(mostrarTotalVentaSucursal);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void detallePorMedioDePagoYPorSucursalEntreFechas(Date fecha1, Date fecha2) {
 				try {
 					MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
 					MongoCollection<Document> coll = database.getCollection("venta");

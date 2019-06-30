@@ -44,6 +44,7 @@ public class TestSetDeDatos {
 			);
 		
 		// Sucursales
+		@SuppressWarnings("unused")
 		List<Sucursal> sucursales = asList(
 				new Sucursal("0001", new Domicilio(10, "25 de Mayo", "1000", lanus, buenosaires), empleados1, encargado1),
 				new Sucursal("0002", new Domicilio(11, "Av. Hipolito Yrigoyen", "3430", lomas, buenosaires), empleados2, encargado2),
