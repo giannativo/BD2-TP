@@ -5,12 +5,12 @@ import modelo.Empleado;
 import java.util.List;;
 
 public class Sucursal {
-	private int idSucursal;
+	private String idSucursal;
 	private Domicilio domicilio;
 	private List<Empleado> lstEmpleados;
 	private Empleado encargado;
 	
-	public Sucursal(int idSucursal, Domicilio domicilio, List<Empleado> lstEmpleados, Empleado encargado) {
+	public Sucursal(String idSucursal, Domicilio domicilio, List<Empleado> lstEmpleados, Empleado encargado) {
 		super();
 		this.idSucursal = idSucursal;
 		this.domicilio = domicilio;
@@ -18,11 +18,11 @@ public class Sucursal {
 		this.encargado = encargado;
 	}
 
-	public int getIdSucursal() {
+	public String getIdSucursal() {
 		return idSucursal;
 	}
 
-	public void setIdSucursal(int idSucursal) {
+	public void setIdSucursal(String idSucursal) {
 		this.idSucursal = idSucursal;
 	}
 

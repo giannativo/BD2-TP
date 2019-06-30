@@ -4,9 +4,9 @@ import java.util.Date;
 
 import negocio.Mongo;
 
-public class TestConsulta1 {
+//1.	Detalle y totales de ventas para la cadena completa y por sucursal, entre fechas.
 
-// 1.	Detalle y totales de ventas para la cadena completa y por sucursal, entre fechas.	
+public class TestConsulta1 {	
 	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
