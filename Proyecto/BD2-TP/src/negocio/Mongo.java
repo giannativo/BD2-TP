@@ -859,6 +859,86 @@ public class Mongo {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
+	public void rankingClientesPorMontoEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nRanking de clientes de la cadena por monto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.include("cliente.nombre"),
+					                      Projections.include("cliente.apellido"),
+					                      Projections.include("cliente.dni")
+						              )),
+							Aggregates.group("$cliente.dni", Accumulators.sum("total", "$total")),
+							Aggregates.sort(Sorts.descending("total"))
+					)).forEach(mostrarRankingClienteMonto);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void rankingClientesPorSucursalYMontoEntreFechas(Date fecha1, Date fecha2) {
+		try {
+			MongoDatabase database = this.getMongoClient().getDatabase(this.base);			
+			MongoCollection<Document> coll = database.getCollection("venta");
+			System.out.println("\nRanking de clientes de la Sucursal 1 por monto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0001-"))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.include("cliente.nombre"),
+					                      Projections.include("cliente.apellido"),
+					                      Projections.include("cliente.dni")
+						              )),
+							Aggregates.group("$cliente.dni", Accumulators.sum("total", "$total")),
+							Aggregates.sort(Sorts.descending("total"))
+					)).forEach(mostrarRankingClienteMonto);	
+			System.out.println("\nRanking de clientes de la Sucursal 2 por monto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0002-"))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.include("cliente.nombre"),
+					                      Projections.include("cliente.apellido"),
+					                      Projections.include("cliente.dni")
+						              )),
+							Aggregates.group("$cliente.dni", Accumulators.sum("total", "$total")),
+							Aggregates.sort(Sorts.descending("total"))
+					)).forEach(mostrarRankingClienteMonto);	
+			System.out.println("\nRanking de clientes de la Sucursal 3 por monto");
+			coll.aggregate(
+					asList(
+							Aggregates.match(and(gte("fecha",fecha1), lte("fecha",fecha2), regex("nroTicket","0003-"))),
+							Aggregates.project(
+						              Projections.fields(
+					                      Projections.excludeId(),
+					                      Projections.include("total"),
+					                      Projections.include("cliente.nombre"),
+					                      Projections.include("cliente.apellido"),
+					                      Projections.include("cliente.dni")
+						              )),
+							Aggregates.group("$cliente.dni", Accumulators.sum("total", "$total")),
+							Aggregates.sort(Sorts.descending("total"))
+					)).forEach(mostrarRankingClienteMonto);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// Convertir e imprimir document como json
 	public Block<Document> printBlock = new Block<Document>() {
 	       @Override
@@ -920,6 +1000,21 @@ public class Mongo {
 		    	   System.out.println("Descripcion: "+document.get("_id")+" Cantidad: "+document.get("cantidad"));
 		       }
 		};
+	// Mostrar Ranking clientes por monto
+			public Block<Document> mostrarRankingClienteMonto = new Block<Document>() {
+			       @Override
+			       public void apply(final Document document) {
+			    	   System.out.println("DNI: "+document.get("_id")+" Total: "+document.get("total"));
+			       }
+			};
+			
+	// Mostrar Ranking clientes por cantidad
+				public Block<Document> mostrarRankingClienteCantidad = new Block<Document>() {
+				       @Override
+				       public void apply(final Document document) {
+				    	   System.out.println("DNI: "+document.get("_id")+" Total: "+document.get("cantidad"));
+				       }
+				};
 			
 			@SuppressWarnings("deprecation")
 	public void totalPorMedioDePagoEntre(Date fecha1, Date fecha2) {
