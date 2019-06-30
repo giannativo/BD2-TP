@@ -6,9 +6,10 @@ import negocio.Mongo;
 
 public class TestConsulta3 {
 	
+//	3.	Detalle y totales de cobranza para la cadena completa y por sucursal, por medio de pago y entre fechas.
+	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Mongo mongo = Mongo.getInstanciaMongo();
 		
 		Date fechaInicial = new Date(119,5,1,0,0);
